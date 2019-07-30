@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -35,26 +36,38 @@ namespace Serializer
 
         public void Serialize()
         {
-            Stream stream = File.Open(@"C:\Users\Tulajdonos\Desktop\Codecool\Serializer\person" + serialNum + ".dat", FileMode.Create);
+            Stream stream = File.Open(@"C:\Users\Tulajdonos\Desktop\Codecool\Serializer\Serializer\person" + serialNum + ".dat", FileMode.Create);
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(stream, this);
             stream.Close();
         }
 
-        public Person DeSerialize(int serialNum)
+        public static Person DeSerialize(int serialNum)
         {
-            Stream stream = new FileStream(@"C:\Users\Tulajdonos\Desktop\Codecool\Serializer\person" + serialNum + ".dat", FileMode.Open, FileAccess.Read);
+            Stream stream = new FileStream(@"C:\Users\Tulajdonos\Desktop\Codecool\Serializer\Serializer\person" + serialNum + ".dat", FileMode.Open, FileAccess.Read);
             BinaryFormatter formatter = new BinaryFormatter();
             return (Person)formatter.Deserialize(stream);
         }
 
-        public Person DeSerialize()
+        public static Person DeSerialize()
         {
-            string[] directories = Directory.GetFiles(@"C:\Users\Tulajdonos\Desktop\Codecool\Serializer");
-            int serialNum = directories.Length;
-            Stream stream = new FileStream(@"C:\Users\Tulajdonos\Desktop\Codecool\Serializer\person" + serialNum + ".dat", FileMode.Open, FileAccess.Read);
+            Stream stream = new FileStream(@"C:\Users\Tulajdonos\Desktop\Codecool\Serializer\Serializer\person" + GetLatestSerialNum() + ".dat", FileMode.Open, FileAccess.Read);
             BinaryFormatter formatter = new BinaryFormatter();
             return (Person)formatter.Deserialize(stream);
+        }
+
+        public static int GetLatestSerialNum()
+        {
+            string[] files = Directory.GetFiles(@"C:\Users\Tulajdonos\Desktop\Codecool\Serializer\Serializer");
+            List<string> fileNames = new List<string>();
+            foreach (var item in files)
+            {
+                if (item.Contains("person"))
+                {
+                    fileNames.Add(item);
+                }
+            }
+            return fileNames.Count;
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
@@ -67,7 +80,7 @@ namespace Serializer
 
         public void OnDeserialization(object sender)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

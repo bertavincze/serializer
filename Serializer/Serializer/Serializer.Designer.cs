@@ -97,6 +97,7 @@
             this.btnPrev.TabIndex = 6;
             this.btnPrev.Text = "Previous";
             this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // btnNext
             // 
@@ -106,6 +107,7 @@
             this.btnNext.TabIndex = 7;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnSave
             // 
@@ -115,6 +117,7 @@
             this.btnSave.TabIndex = 8;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnFirst
             // 
@@ -124,6 +127,7 @@
             this.btnFirst.TabIndex = 9;
             this.btnFirst.Text = "First";
             this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
             // 
             // btnLast
             // 
@@ -133,6 +137,7 @@
             this.btnLast.TabIndex = 10;
             this.btnLast.Text = "Last";
             this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
             // 
             // Serializer
             // 
@@ -152,6 +157,7 @@
             this.Controls.Add(this.labelName);
             this.Name = "Serializer";
             this.Text = "Serializer";
+            this.Load += new System.EventHandler(this.Serializer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
